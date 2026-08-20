@@ -1,5 +1,3 @@
-# kurli2026-two-child-policy-India
-
 # Do Two-Child Policies in India Adequately Address Demographic Realities?
 
 **Replication code for:** Kurli, V., & Menken, J. "Do Two-Child Policies in India Adequately Address Demographic Realities? Examining the Effectiveness and Unintended Consequences of State-Level Fertility Policies"
