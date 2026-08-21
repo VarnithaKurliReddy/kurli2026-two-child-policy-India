@@ -29,16 +29,25 @@ NFHS-1 (1992–93), NFHS-3 (2005–06), NFHS-4 (2015–16), and NFHS-5 (2019–2
 2. Update the hardcoded paths at the top of each script (`BASE_DIR` in the R scripts; `local datadir`/`resdir`/`logdir` and `use "..."` paths in the Stata scripts) to point to your local copy
 3. Run scripts in order from the repository root:
    ```
-   0_restricting_states.do
-   1_Matching_State_Level.R
-   2_merging_states_NFHS.do
-   3_restrictions_waves.do
-   4_Matching_Individual_level.R
-   5_analysis_mahalanobis.do
-   6_analysis_NN.do
-   7_analysis_CEM.do
+   STEP 0-2
+   code for data preparation/0_data_preperation_2005_06.do
+   code for data preparation/1_data_preperation_2015_16.do
+   code for data preparation/2_data_preperation_2019_21.do
+   STEP 3
+   code for data preparation/3_merging_all_rounds.do
+   STEP 0-1
+   code for data preparation/0_restricting_states.do
+   code for data preparation/1_Matching_State_Level.R
+   STEP 2-4
+   code for data preparation/2_merging_states_NFHS.do
+   code for data preparation/3_restrictions_waves.do
+   code for data preparation/4_Matching_Individual_level.R
+   STEP 5-7
+   code for analysis/5_analysis_mahalanobis.do
+   code for analysis/6_analysis_NN.do
+   code for analysis/7_analysis_CEM.do
    ```
-   Steps 5–7 are independent of each other and can run in any order once step 4 completes.
+   Steps 0–2 (per-round DHS cleaning) can run in any order; step 3 requires all three to have completed. Steps 0–1 (Census-based state panels) are independent of steps 0–3 and can run in parallel with them, but must finish before step 2. The three analysis scripts are independent of each other and can run in any order once step 2-4 completes.
 
 ## Repository Structure
 
@@ -54,14 +63,21 @@ NFHS-1 (1992–93), NFHS-3 (2005–06), NFHS-4 (2015–16), and NFHS-5 (2019–2
 │   └── 4_final/                     # Stage-2 matched analytic datasets + SMD diagnostics
 ├── 3_results/                       # Regression output (.docx via etable)
 ├── 9_logs/                          # Stata log files
-├── 0_restricting_states.do          # Build state-level candidate panels (Panel A/B/C)
-├── 1_Matching_State_Level.R         # Stage 1: state-level matching (NN/Mahalanobis/CEM)
-├── 2_merging_states_NFHS.do         # Merge matched states with individual NFHS records
-├── 3_restrictions_waves.do          # Build Parity-23 outcome, treatment/period flags
-├── 4_Matching_Individual_level.R    # Stage 2: individual-level matching within period
-├── 5_analysis_mahalanobis.do        # DiD models — Mahalanobis matched sample (main results)
-├── 6_analysis_NN.do                 # DiD models — Nearest-Neighbor matched sample
-├── 7_analysis_CEM.do                # DiD models — Coarsened Exact Matching sample
+├── code for data preparation/
+│   ├── 0_data_preperation_2005_06.do    # Clean NFHS-3 (2005-06) individual records
+│   ├── 1_data_preperation_2015_16.do    # Clean NFHS-4 (2015-16) individual records
+│   ├── 2_data_preperation_2019_21.do    # Clean NFHS-5 (2019-21) individual records
+│   ├── 3_merging_all_rounds.do 
+├── code for analysis/
+# Append the three cleaned survey rounds
+│   ├── 0_restricting_states.do          # Build state-level candidate panels (Panel A/B/C)
+│   ├── 1_Matching_State_Level.R         # Stage 1: state-level matching (NN/Mahalanobis/CEM)
+│   ├── 2_merging_states_NFHS.do         # Merge matched states with individual NFHS records
+│   ├── 3_restrictions_waves.do          # Build Parity-23 outcome, treatment/period flags
+│   └── 4_Matching_Individual_level.R    # Stage 2: individual-level matching within period
+│   ├── 5_analysis_mahalanobis.do        # DiD models — Mahalanobis matched sample (main results)
+│   ├── 6_analysis_NN.do                 # DiD models — Nearest-Neighbor matched sample
+│   └── 7_analysis_CEM.do                # DiD models — Coarsened Exact Matching sample
 ├── LICENSE
 └── README.md
 ```
