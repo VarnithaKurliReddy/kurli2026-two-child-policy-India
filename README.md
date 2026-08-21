@@ -33,16 +33,16 @@ NFHS-1 (1992–93), NFHS-3 (2005–06), NFHS-4 (2015–16), and NFHS-5 (2019–2
    code for data preparation/1_data_preperation_2015_16.do
    code for data preparation/2_data_preperation_2019_21.do
    code for data preparation/3_merging_all_rounds.do
-   code for data preparation/4_restricting_states.do
-   code for data preparation/5_Matching_State_Level.R
-   code for data preparation/6_merging_states_NFHS.do
-   code for data preparation/7_restrictions_waves.do
-   code for data preparation/8_Matching_Individual_level.R
-   code for analysis/0_analysis_mahalanobis.do
-   code for analysis/1_analysis_NN.do
-   code for analysis/2_analysis_CEM.do
+   code for analysis/0_restricting_states.do
+   code for analysis/1_Matching_State_Level.R
+   code for analysis/2_merging_states_NFHS.do
+   code for analysis/3_restrictions_waves.do
+   code for analysis/4_Matching_Individual_level.R
+   code for analysis/5_analysis_mahalanobis.do
+   code for analysis/6_analysis_NN.do
+   code for analysis/7_analysis_CEM.do
    ```
-   Steps 0–2 (per-round DHS cleaning) can run in any order; step 3 requires all three to have completed. Steps 4–5 (Census-based state panels) are independent of steps 0–3 and can run in parallel with them, but must finish before step 6. The three analysis scripts are independent of each other and can run in any order once step 8 completes.
+   Steps 0–2 (per-round DHS cleaning) can run in any order; step 3 requires all three to have completed. Steps 0–1 of code for analysis (Census-based state panels) are independent of steps 0–3 of code for data preparation and can run in parallel with them, but must finish before step 2 of code for analysis. The three scripts step 5-7 of code for analysis  are independent of each other and can run in any order once step 4 of code for analysis is complete.
 
 ## Repository Structure
 
@@ -69,7 +69,7 @@ NFHS-1 (1992–93), NFHS-3 (2005–06), NFHS-4 (2015–16), and NFHS-5 (2019–2
 │   │   ├── merged_2019_21_all.dta   # Output of 2_data_preperation_2019_21.do
 │   │   ├── merged_all_rounds.dta    # Output of 3_merging_all_rounds.do (all three rounds stacked)
 │   │   ├── 0_statelevel/            # Stage-1 matched state panels
-│   │   └── 1_wave/                  # Individual match-eligible datasets by wave x method
+│   │   └── 1_wave/                  # Individual match-eligible datasets by wave and matching method
 │   └── 4_final/                     # Stage-2 matched analytic datasets + SMD diagnostics
 ├── 3_results/                       # Regression output (.docx via etable)
 ├── 9_logs/                          # Stata log files
@@ -78,15 +78,15 @@ NFHS-1 (1992–93), NFHS-3 (2005–06), NFHS-4 (2015–16), and NFHS-5 (2019–2
 │   ├── 1_data_preperation_2015_16.do    # Clean NFHS-4 (2015-16) individual records
 │   ├── 2_data_preperation_2019_21.do    # Clean NFHS-5 (2019-21) individual records
 │   ├── 3_merging_all_rounds.do          # Append the three cleaned survey rounds
-│   ├── 4_restricting_states.do          # Build state-level candidate panels (Panel A/B/C)
-│   ├── 5_Matching_State_Level.R         # Stage 1: state-level matching (NN/Mahalanobis/CEM)
-│   ├── 6_merging_states_NFHS.do         # Merge matched states with individual NFHS records
-│   ├── 7_restrictions_waves.do          # Build Parity-23 outcome, treatment/period flags
-│   └── 8_Matching_Individual_level.R    # Stage 2: individual-level matching within period
 ├── code for analysis/
-│   ├── 0_analysis_mahalanobis.do        # DiD models — Mahalanobis matched sample (main results)
-│   ├── 1_analysis_NN.do                 # DiD models — Nearest-Neighbor matched sample
-│   └── 2_analysis_CEM.do                # DiD models — Coarsened Exact Matching sample
+│   ├── 0_restricting_states.do          # Build state-level candidate panels (Panel A/B/C)
+│   ├── 1_Matching_State_Level.R         # Stage 1: state-level matching (NN/Mahalanobis/CEM)
+│   ├── 2_merging_states_NFHS.do         # Merge matched states with individual NFHS records
+│   ├── 3_restrictions_waves.do          # Build Parity-23 outcome, treatment/period flags
+│   └── 4_Matching_Individual_level.R    # Stage 2: individual-level matching within period
+│   ├── 5_analysis_mahalanobis.do        # DiD models — Mahalanobis matched sample (main results)
+│   ├── 6_analysis_NN.do                 # DiD models — Nearest-Neighbor matched sample
+│   └── 7_analysis_CEM.do                # DiD models — Coarsened Exact Matching sample
 ├── LICENSE
 └── README.md
 ```
