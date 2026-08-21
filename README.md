@@ -13,7 +13,7 @@ Using difference-in-differences analysis with matching techniques on National Fa
 
 ## Data Availability
 
-NFHS-1 (1992–93), NFHS-3 (2005–06), NFHS-4 (2015–16), and NFHS-5 (2019–21) data are available from the DHS Program (https://dhsprogram.com) upon registration and approval of a research project request, per data-sharing agreements between the DHS Program and the Government of India. Census 1991 and 2001 data are available from the Office of the Registrar General & Census Commissioner, India (https://censusindia.gov.in). Raw survey data are not redistributed in this repository.
+NFHS-1 (1992–93), NFHS-3 (2005–06), NFHS-4 (2015–16), and NFHS-5 (2019–21) data are available from the DHS Program (https://dhsprogram.com) upon registration and approval of a research project request, per data-sharing agreements between the DHS Program and the Government of India. Census 1991 and 2001 PCA data are available from the Office of the Registrar General & Census Commissioner, India (https://censusindia.gov.in). Raw survey data  or prepared data are not available in this repository.
 
 ## Requirements
 
