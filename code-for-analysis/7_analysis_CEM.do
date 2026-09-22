@@ -1,4 +1,4 @@
-* ---------------------------------------------------------------------------
+
 * Fertility Limits - main results, CEM matched samples
 *
 * Everything goes into one workbook, one sheet per model, three waves as
