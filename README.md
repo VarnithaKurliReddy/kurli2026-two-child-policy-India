@@ -1,4 +1,7 @@
-# Do Two-Child Policies in India Adequately Address Demographic Realities?
+# State-Level Two-Child Policies and Progression to a Third Child in India: Evidence from Three Policy Waves.
+How Effective are they, and for Whom?
+
+
 
 **Replication code for:** Kurli, V., & Menken, J. "Do Two-Child Policies in India Adequately Address Demographic Realities? Examining the Effectiveness and Unintended Consequences of State-Level Fertility Policies"
 
